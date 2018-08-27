@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ui</title>
+  <link rel="shortcut icon" href=../favicon.ico type=image/x-icon>
+  <title>switch</title>
   <script src="../event.js"></script>
 <style>
 * {
@@ -12,7 +13,7 @@
   padding: 0;
 }
 body {
-  background-color: #ccc;
+  background-color: #fff;
 }
 .demos {
   margin: 30px;
@@ -26,19 +27,18 @@ body {
 }
 /* 原型 */
 .switch-circle {}
-.switch-circle .switch-open, .switch-circle .switch-close {
+.switch-circle {
   border-radius: 15px;
 }
-.switch-circle .switch-open::after, .switch-circle .switch-close::after {
+.switch-circle::after, .switch-circle::after {
   border-radius: 50%;
 }
-/* 方块 */
-.switch-rect {}
-.switch-rect .switch-open, .switch-rect .switch-close {}
-.switch-rect .switch-open::after, .switch-rect .switch-close::after {}
 /* 公共css */
-.switch-open, .switch-close {
-  height: 100%;
+.switch .switch-input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  margin: 0;
 }
 .switch-open::before, .switch-close::before {
   height: 32px;
@@ -57,7 +57,7 @@ body {
 }
 /* 基础css */
 .switch-open {
-  background-color: #75df70;
+  background-color: #63e2ab;
 }
 .switch-open::before {
   content: '打开';
@@ -84,18 +84,17 @@ body {
 </head>
 <body>
   <div class="demos">
-    <div class="switch switch-circle">
-      <div class="switch-open"></div>
+    <div class="switch switch-open">
+      <input class="switch-input" type="text">
     </div>
-    <div class="switch switch-circle">
-      <div class="switch-close"></div>
+    <div class="switch switch-close">
+      <input class="switch-input" type="text">
     </div>
-
-    <div class="switch switch-rect">
-      <div class="switch-open"></div>
+    <div class="switch switch-circle switch-open">
+      <input class="switch-input" type="text">
     </div>
-    <div class="switch switch-rect">
-      <div class="switch-close"></div>
+    <div class="switch switch-circle switch-close">
+      <input class="switch-input" type="text">
     </div>
   </div>
 <script>
@@ -119,8 +118,14 @@ body {
   ev.addHanlder(demos, 'click', function(e) {
     e = ev.getEvent(e)
     var target = ev.getTarget(e)
-    if (target.className === 'switch-open') target.className = 'switch-close'
-    else if (target.className === 'switch-close') target.className = 'switch-open'
+    var classList = target.classList
+    if (classList.contains('switch-open')) {
+      classList.remove('switch-open')
+      classList.add('switch-close')
+    } else if (classList.contains('switch-close')) {
+      classList.remove('switch-close')
+      classList.add('switch-open')
+    }
   })
   
 })()
