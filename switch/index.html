@@ -102,11 +102,21 @@ body {
   var demos = document.querySelector('.demos')
   var ev = new EventUtil()
 
+  function toggle (target) {
+    var classList = target.classList
+    if (classList.contains('switch-open')) {
+      classList.remove('switch-open')
+      classList.add('switch-close')
+    } else if (classList.contains('switch-close')) {
+      classList.remove('switch-close')
+      classList.add('switch-open')
+    }
+  }
+
   ev.addHanlder(demos, 'touchstart', function(e) {
     e = ev.getEvent(e)
     var target = ev.getTarget(e)
-    if (target.className === 'switch-open') target.className = 'switch-close'
-    else if (target.className === 'switch-close') target.className = 'switch-open'
+    toggle(target)
   })
 
   ev.addHanlder(demos, 'touchend', function(e) {
@@ -118,14 +128,7 @@ body {
   ev.addHanlder(demos, 'click', function(e) {
     e = ev.getEvent(e)
     var target = ev.getTarget(e)
-    var classList = target.classList
-    if (classList.contains('switch-open')) {
-      classList.remove('switch-open')
-      classList.add('switch-close')
-    } else if (classList.contains('switch-close')) {
-      classList.remove('switch-close')
-      classList.add('switch-open')
-    }
+    toggle(target)
   })
   
 })()
