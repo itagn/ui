@@ -75,16 +75,24 @@ body {
   </div>
 <script>
   ;(function() {
-    const txt = 'itagn'
-    const fontSize = 5
+    const txt = '东东么么哒'
+    let txtWidth = 0
+    ;[...txt].forEach(v => {
+      if (/^[\u4e00-\u9fa5]/.test(v)) {
+        txtWidth += 1
+      } else {
+        txtWidth += 0.5
+      }
+    })
+    const fontSize = 5 / (window.devicePixelRatio === 1 ? 1 : window.devicePixelRatio/1.5)
     const options = {
       txt: `'${txt}'`,
-      txtWidth: txt.length/2,
+      txtWidth,
       fontSize,
       upColor: 'lightblue',
       downColor: 'indianred',
       animationTime: `${txt.length/2}s`,
-      px: '1em'
+      px: `1em`
     }
     document.querySelector('.down').innerText = txt
     Object.entries(options).forEach(v => {
