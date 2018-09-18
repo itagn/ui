@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>滚动的字体</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #F7FAFC;
+  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+}
+.box {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  font-size: calc(var(--fontSize) * var(--px));
+}
+.box, .up::before {
+  position: absolute;
+  width: calc(var(--txtWidth) * var(--px));
+  height: calc(var(--px) * 1.2);
+}
+.up, .down {
+  position: absolute;
+  height: 100%;
+  line-height: 1;
+}
+.up {
+  width: calc(var(--px));
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 15%;
+  background: #eee;
+  animation: run var(--animationTime) infinite;
+  -webkit-animation: run var(--animationTime) infinite;
+}
+.up::before {
+  content: var(--txt);
+  color: var(--upColor);
+  animation: run2 var(--animationTime) infinite;
+  -webkit-animation: run2 var(--animationTime) infinite;
+}
+.down {
+  color: var(--downColor);
+  z-index: 1;
+}
+@keyframes run {
+  0% { left: calc(var(--px) * -1); }
+  100% { left: calc(var(--txtWidth) * var(--px)); display: none; }
+}
+@-webkit-keyframes run {
+  0% { left: calc(var(--px) * -1); }
+  100% { left: calc(var(--txtWidth) * var(--px)); display: none; }
+}
+@keyframes run2 {
+  0% { left: calc(var(--px)); }
+  100% { left: calc(var(--txtWidth) * var(--px) * -1); display: none; }
+}
+@-webkit-keyframes run2 {
+  0% { left: calc(var(--px)); }
+  100% { left: calc(var(--txtWidth) * var(--px) * -1); display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="down"></div>
+    <div class="up"></div>
+  </div>
+<script>
+  ;(function() {
+    const txt = 'itagn'
+    const fontSize = 5
+    const options = {
+      txt: `'${txt}'`,
+      txtWidth: txt.length/2,
+      fontSize,
+      upColor: 'lightblue',
+      downColor: 'indianred',
+      animationTime: `${txt.length/2}s`,
+      px: '1em'
+    }
+    document.querySelector('.down').innerText = txt
+    Object.entries(options).forEach(v => {
+      document.documentElement.style.setProperty(`--${v[0]}`, v[1]);
+    })
+  })()
+</script>
+</body>
+</html>
