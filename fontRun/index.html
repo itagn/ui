@@ -11,14 +11,12 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
 }
 .box {
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   font-size: calc(var(--fontSize) * 1em);
-}
-.box, .up::before {
-  position: absolute;
   width: calc(var(--txtWidth) * 1em);
   height: 1.2em;
 }
@@ -39,6 +37,8 @@ body {
 }
 .up::before {
   content: var(--txt);
+  position: absolute;
+  width: calc(var(--txtWidth) * 1em);
   animation: run2 var(--animationTime) infinite;
   -webkit-animation: run2 var(--animationTime) infinite;
 }
