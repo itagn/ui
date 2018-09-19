@@ -70,13 +70,14 @@ body {
 </head>
 <body>
   <div class="box">
-    <div class="down"></div>
+    <div class="down">东东么么哒</div>
     <div class="up"></div>
   </div>
 <script>
   ;(function() {
-    const txt = '东东么么哒'
+    const txt = document.querySelector('.down').innerText
     let txtWidth = 0
+    // 中文占位一个字符，英文占位半个字符
     ;[...txt].forEach(v => {
       if (/^[\u4e00-\u9fa5]/.test(v)) {
         txtWidth += 1
@@ -94,7 +95,6 @@ body {
       animationTime: `${txt.length/2}s`,
       px: `1em`
     }
-    document.querySelector('.down').innerText = txt
     Object.entries(options).forEach(v => {
       document.documentElement.style.setProperty(`--${v[0]}`, v[1]);
     })
