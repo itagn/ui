@@ -19,12 +19,12 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
-  font-size: calc(var(--fontSize) * var(--px));
+  font-size: calc(var(--fontSize) * 1em);
 }
 .box, .up::before {
   position: absolute;
-  width: calc(var(--txtWidth) * var(--px));
-  height: calc(var(--px) * 1.2);
+  width: calc(var(--txtWidth) * 1em);
+  height: 1.2em;
 }
 .up, .down {
   position: absolute;
@@ -32,7 +32,7 @@ body {
   line-height: 1;
 }
 .up {
-  width: calc(var(--px));
+  width: 1em;
   z-index: 2;
   overflow: hidden;
   border-radius: 15%;
@@ -51,20 +51,20 @@ body {
   z-index: 1;
 }
 @keyframes run {
-  0% { left: calc(var(--px) * -1); }
-  100% { left: calc(var(--txtWidth) * var(--px)); display: none; }
+  0% { left: -1em; }
+  100% { left: calc(var(--txtWidth) * 1em); display: none; }
 }
 @-webkit-keyframes run {
-  0% { left: calc(var(--px) * -1); }
-  100% { left: calc(var(--txtWidth) * var(--px)); display: none; }
+  0% { left: -1em; }
+  100% { left: calc(var(--txtWidth) * 1em); display: none; }
 }
 @keyframes run2 {
-  0% { left: calc(var(--px)); }
-  100% { left: calc(var(--txtWidth) * var(--px) * -1); display: none; }
+  0% { left: 1em; }
+  100% { left: calc(var(--txtWidth) * -1em); display: none; }
 }
 @-webkit-keyframes run2 {
-  0% { left: calc(var(--px)); }
-  100% { left: calc(var(--txtWidth) * var(--px) * -1); display: none; }
+  0% { left: 1em; }
+  100% { left: calc(var(--txtWidth) * -1em); display: none; }
 }
 </style>
 </head>
@@ -92,8 +92,7 @@ body {
       fontSize,
       upColor: 'lightblue',
       downColor: 'indianred',
-      animationTime: `${txt.length/2}s`,
-      px: `1em`
+      animationTime: `${txt.length/2}s`
     }
     Object.entries(options).forEach(v => {
       document.documentElement.style.setProperty(`--${v[0]}`, v[1]);
