@@ -28,8 +28,9 @@ body {
   line-height: 1;
 }
 .up {
-  width: 1em;
+  color: var(--upColor);
   z-index: 2;
+  width: 1em;
   overflow: hidden;
   border-radius: 15%;
   background: #eee;
@@ -38,7 +39,6 @@ body {
 }
 .up::before {
   content: var(--txt);
-  color: var(--upColor);
   animation: run2 var(--animationTime) infinite;
   -webkit-animation: run2 var(--animationTime) infinite;
 }
